@@ -26,56 +26,55 @@ Desde então acompanho, mesmo que de longe, o cenário do jogo e seus campeonato
 
 Minha paixão por jogos foi rapidamente substituída pela paixão por dados, surgindo a ideia de reproduzir as previsões demonstradas e algumas coisinhas a mais. 
 
-Buscar por dados já extraídos seria o caminho mais fácil disponível, porém aproveitei este projeto para estudar um pouco mais sobre o consumo de dados por API. Esta não é minha especialidade e portanto estou sempre disposto a feedback de meu trabalho. 
+Buscar por dados já extraídos seria o caminho mais fácil disponível, porém aproveitei este projeto para estudar um pouco mais sobre o consumo de dados por API. Esta não é minha especialidade e portanto estou sempre disposto a feedback. 
 
-Espero que goste deste projeto e se for replicá-lo, espero que divirta-se tanto quanto eu me diverti unindo minhas paixões de adulto e adolescente.
+Espero que goste deste projeto e se for replicá-lo, espero que divirta-se tanto quanto eu me diverti unindo minhas paixões de adolescente e adulto.
 
 ### Etapas
 
 Este projeto possui duas etapas claras de desenvolvimento, ingestão e predição. Ambas serão realizadas em python e estarão dentro da pasta "src".
 
-Para a ingestão dos dados utilizaremos a API pública disponibilizada pela desenvolvedora do jogo, Riot Games. Sendo ela pública e não de produção, possui limitações de *requests* e tempo, o que deve nos deixar atentos à quantos dados queremos utilizar.
+Para a ingestão dos dados utilizaremos a API pública disponibilizada pela desenvolvedora do jogo, Riot Games. Sendo ela pública e não de produção, possui limitações de *requests* e *timeout*, o que deve nos deixar atentos à quantos dados queremos utilizar.
 
-Os dados extraídos serão somente os que acredito necessários ou interessantes para a produção de um modelo de Machine Learning e não estarão inicialmente no formato mais adequado para tal. Entre as etapas você irá se deparar com um processo de *feature engineering* onde tranformaremos os dados para o *input* no algoritimo.
+Os dados extraídos serão somente os que acredito necessários ou interessantes para a produção de um modelo de Machine Learning e não estarão inicialmente no formato mais adequado para tal. Entre as etapas você irá se deparar com um processo de *feature engineering* onde tranformaremos os dados para o formato mais adequado de *input* para o algoritimo. Para saber mais sobre *feature engineering*: [Big Book of MLOps - Databricks](https://www.databricks.com/br/resources/ebook/the-big-book-of-mlops?scid=7018Y000001Fi0cQAC&utm_medium=paid+search&utm_source=google&utm_campaign=20613856692&utm_adgroup=159575945934&utm_content=ebook&utm_offer=the-big-book-of-mlops&utm_ad=696280074173&utm_term=mlops&gad_source=1&gclid=Cj0KCQjw3vO3BhCqARIsAEWblcAXbQ4jtLD3ndUhhgG8rcAHCvOB4nG6xYyKO0QqzZrv-bszsJCA_ewaAjOGEALw_wcB);
 
-Para saber mais sobre *feature engineering*: [Big Book of MLOps - Databricks](https://www.databricks.com/br/resources/ebook/the-big-book-of-mlops?scid=7018Y000001Fi0cQAC&utm_medium=paid+search&utm_source=google&utm_campaign=20613856692&utm_adgroup=159575945934&utm_content=ebook&utm_offer=the-big-book-of-mlops&utm_ad=696280074173&utm_term=mlops&gad_source=1&gclid=Cj0KCQjw3vO3BhCqARIsAEWblcAXbQ4jtLD3ndUhhgG8rcAHCvOB4nG6xYyKO0QqzZrv-bszsJCA_ewaAjOGEALw_wcB)
+Não vou disponibilizar aqui sobre o procedimento de entendimento do problema e escolha das informações, mas saiba que utilizei o framework de Crisp-DM. Caso queira entender melhor sobre quais *features* utilizar, recomendo entender sobre o jogo em si.
 
-*Mais uma coisa, é provável que eu me aventure em algumas estatísticas de jogadores específicos (eu) como forma de acompanhamento. Você vai notar duas coisas, que eu não jogo muito e que sou muito ruim. Mas este arquivo também estará em "src" e terá uma etapa de ingestão única.*
+*Mais uma coisa, é provável que eu me aventure em algumas estatísticas de jogadores específicos (eu) como forma de acompanhamento. Você vai notar duas coisas, que eu não jogo muito e que sou muito ruim. Mas este arquivo também estará em "src" e terá uma etapa de ingestão única mas também presente no arquivo de ingestão.*
 
 ### Setup 
 
-Em meu projeto utilizei um ambiente virtual, que recomendo que o faça também:
+Em meu projeto utilizei um ambiente virtual e recomendo que faça sua configuração também dentro do terminal:
 
 ```bash
 python -m venv venv
 
 ./venv/Scripts/Activate
 ```
-*O caminho venv está dentro do "gitignore" deste projeto.*
+*O caminho venv está presente no "gitignore" deste projeto.*
 
-Além disso, todas as bibliotecas utilizadas neste projeto estão dentro do arquivo "requirements.txt" e você pode fazer a instalação completa em seu ambiente através do seguinte comando:
+Além disso, todas as bibliotecas utilizadas neste projeto estão dentro do arquivo "requirements.txt" e você pode fazer a instalação completa em seu ambiente através do seguinte comando no terminal:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Por se tratar de uma API e de uma chave única de acesso, por motivos de segurança consta em meu projeto um arquivo ".env" que contem a variável "riot_api_key". Ela será utilizada para o acesso à API e também está presente no arquivo "gitignore".
+Por se tratar de uma API e de uma chave única de acesso, por motivos de segurança consta em meu projeto um arquivo ".env" que contém a variável "riot_api_key". Ela será utilizada para o acesso à API e também está presente dentro dos arquivos de ingestão.
+*O arquivo ".env" está presente no "gitignore" deste projeto.*
 
 ## Desafios
 
 ### Ingestao
 
-Esta etapa tem muitos desafios, especialmente para mim que não sou um engenheiro de dados. Vou me deter apenas em desafios que julgue elementar para entender o processo de execução e suas razões. Fique a vontade para me enviar um email ou mensagem caso tenha dúvida de etapas não mencionadas aqui.
+Esta etapa tem muitos desafios, especialmente para mim que não sou um engenheiro de dados. Vou me deter apenas em desafios que julgue elementar para entender o processo de execução e por consequência suas razões. Fique a vontade para me enviar um email ou mensagem caso tenha dúvidas de etapas não mencionadas aqui.
 
 **Ingestão de partidas:** 
 
-Até o momento que estou escrevendo este arquivo a API da Riot Games não possui uma maneira de extrair partidas em geral de algum servidor ou região, a única maneira disponível é fazer a ingestão de partidas de um Jogador específico de cada vez.
+Até o momento que estou escrevendo este arquivo a API da Riot Games não possui uma maneira de extrair várias partidas simultaneamente de algum servidor ou região, a única maneira disponível é fazer a ingestão de partidas de **UM** jogador específico de cada vez.
 
 Acredito que essa limitação seja proposital e faça com que tenhamos que criar novos caminhos. Particularmente achei muito bom pois pude praticar um pouco mais. Para este problema elenquei duas ideias e explicarei por que segui uma e não a outra.
 
-1. A primeira ideia que tive era iniciar a extração dos dados de partidas de apenas um jogador, eu mesmo ou outro jogador melhor ranqueado. A partir destes dados, seria possível o acesso aos indentificadores de 9 outros jogadores, a cada partida, que o jogador inicial encontrou. Com novos *IDs* de jogadores poderiamos ampliar em cascata o encontro de novos históricos de partidas.
-2. A segunda ideia e *escolhida*, utiliza a extração de partidas dos melhores joagores ranqueados do servidor. É possível a coleta destes dados através de outro *endpoint* da API. Essa estratégia foi escolhida pois estamos buscando prever os principais componentes que levam um time a vitória e utilizando os melhores jogadores estaremos reduzindo o viés de aprendizagem que partidas "comuns" podem ter. 
-
-Para a ideia 2, é preciso primeiramente do *leader board* e depois a extração das partidas. Você verá esta estrutura no código.
+1. A primeira ideia consistia em iniciar a extração dos dados de partidas de apenas um jogador, eu mesmo ou outro jogador melhor ranqueado. A partir destes dados, seria possível o acesso aos indentificadores de 9 outros jogadores que participaram da partida junto ao jogador inicial. Com novos *IDs* de jogadores poderiamos aplicar esse efeito de "rede" em cada partida com novos 9 jogadores.
+2. A segunda ideia e *escolhida*, utiliza a extração de partidas dos melhores joagores ranqueados do servidor. É possível a coleta destes dados através de outro *endpoint* da API. Essa estratégia foi escolhida pois estamos buscando prever os principais componentes que levam um time a vitória, e utilizando os melhores jogadores estaremos reduzindo o **viés de aprendizagem** que partidas "comuns" podem ter. 
 
 ### Machine Learning
