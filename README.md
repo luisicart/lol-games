@@ -1,6 +1,6 @@
 # lol-games
  
-Este repositório é um projeto pessoal, nascido de uma paixão por jogos e dados. Nele, busquei aprender sobre ingestão de dados via API com o intuito de fornecer um modelo de Machine Learning com capacidades preditivas da vitória de um time.
+Este repositório é um projeto pessoal, nascido de uma paixão por jogos e dados. Nele, busquei aprender sobre ingestão de dados via API com o X de fornecer um modelo de Machine Learning com capacidades preditivas da vitória de um time.
 
 Este projeto só foi possível devido a API aberta da desenvolvedora de jogos Riot Games. Caso queira saber mais, pode acessar a documentação neste link: [API Documentation](https://developer.riotgames.com/apis)
 
