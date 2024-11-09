@@ -1,5 +1,4 @@
-load_dotenv
-os
-requests 
+python-dotenv
+requests
 pandas
 tqdm
