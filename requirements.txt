@@ -2,3 +2,6 @@ python-dotenv
 requests
 pandas
 tqdm
+aiometer
+httpx
+sqlalchemy
