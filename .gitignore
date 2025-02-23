@@ -3,6 +3,7 @@ __pycache__
 *.csv
 *.xlsx
 *.pkl
+*.parquet
 .env
 venv
 .vscode
