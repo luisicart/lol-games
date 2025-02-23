@@ -88,13 +88,13 @@ async def fetch_puuids_and_matches():
     df_matches_per_puuid.drop(columns=["matches"]).to_parquet(f"{database_path}/df_matches_per_puuid.parquet", engine="pyarrow", index=False)
     print("Matches por PUUID salvos no banco de dados.")
 
-    all_match_ids = [match for matches in df_matches_per_puuid["matches"] for match in matches]
+    all_match_ids = set([match for matches in df_matches_per_puuid["matches"] for match in matches])
     match_details = await run_all(
         [partial(get_match_info, match_id) for match_id in all_match_ids],
         max_per_second=limit_requests_per_second,
         max_at_once=3
     )
-    df_match_info = pd.DataFrame(match_details).drop_duplicates(subset=['match_id'])
+    df_match_info = pd.DataFrame(match_details)
 
     df_match_info.to_parquet(f"{database_path}/df_match_info.parquet", engine="pyarrow", index=False)
 
