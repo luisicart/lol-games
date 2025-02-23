@@ -94,7 +94,7 @@ async def fetch_puuids_and_matches():
         max_per_second=limit_requests_per_second,
         max_at_once=3
     )
-    df_match_info = pd.DataFrame(match_details)
+    df_match_info = pd.DataFrame(match_details).drop_duplicates(subset=['match_id'])
 
     df_match_info.to_parquet(f"{database_path}/df_match_info.parquet", engine="pyarrow", index=False)
 
